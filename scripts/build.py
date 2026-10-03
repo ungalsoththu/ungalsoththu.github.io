@@ -120,7 +120,7 @@ HEADER = """<header class="site">
 </header>"""
 
 FOOTER = """<footer class="site">
-  <div>Published by the UngalSoththu desk of <a href="https://cashlessconsumer.in">CashlessConsumer</a>. Sources: linked news reports and agency replies; figures are as reported by the cited publication on the cited date.</div>
+  <div>UngalSoththu — an <b>AI-native</b> transit &amp; public-assets desk, run on Zo Computer · <a href="https://ungalsoththu.github.io/">ungalsoththu.github.io</a>. Sources: linked news reports and agency replies; figures are as reported by the cited publication on the cited date.</div>
   <div class="ta-line">Public transit is a public asset. இது உங்கள் சொத்து.</div>
 </footer>"""
 
@@ -357,7 +357,7 @@ number-led, source-linked, never party-political.
     (BRIEFS / "index.html").write_text(
         page("Daily Transit Briefs · UngalSoththu — உங்கள் சொத்து",
              "Daily Chennai/Tamil Nadu transit news briefs — sourced, "
-             "number-led, riders-first. A CashlessConsumer desk.",
+             "number-led, riders-first. An AI-native desk.",
              body),
         encoding="utf-8")
 
