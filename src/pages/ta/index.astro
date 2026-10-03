@@ -1,20 +1,74 @@
 ---
-// Tamil language landing page
+// UngalSoththu hub (Tamil)
 ---
 
 <html lang="ta">
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width" />
-    <title>உங்கள் சொத்து - UngalSoththu</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>உங்கள் சொத்து — UngalSoththu · சென்னை பொதுப் போக்குவரத்து</title>
+    <meta name="description" content="பொதுப் போக்குவரத்தும் நகர வளர்ச்சியும் — திறந்த தரவுகளுடன். சென்னை மற்றும் தமிழ்நாடு: MTC, CMRL, புறநகர் ரயில், CUMTA." />
+    <meta property="og:title" content="உங்கள் சொத்து — UngalSoththu · சென்னை பொதுப் போக்குவரத்து" />
+    <meta property="og:image" content="/og.png" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&family=Noto+Sans+Tamil:wght@400;600;700&display=swap" rel="stylesheet" />
+    <style>
+      :root { --bg:#0b2e2f; --fg:#eef7f5; --muted:#c9e4e0; --accent:#f0b429; --accent-alt:#8fd0c8; --card:rgba(17,52,53,0.85); }
+      * { box-sizing: border-box; }
+      body { margin:0; background:var(--bg); color:var(--fg); font-family:'Noto Sans Tamil',Inter,system-ui,sans-serif; line-height:1.75; -webkit-font-smoothing:antialiased; }
+      a { color:var(--accent); text-decoration:none; }
+      a:hover { text-decoration:underline; }
+      .wrap { max-width:780px; margin:0 auto; padding:0 20px 64px; }
+      header { border-bottom:1px solid rgba(238,247,245,0.14); padding:28px 0 22px; }
+      .wordmark { font-size:28px; font-weight:700; color:var(--accent-alt); }
+      .wordmark .en { color:var(--fg); font-weight:800; letter-spacing:0.14em; font-size:20px; margin-right:10px; }
+      .tagline { color:var(--muted); font-size:15px; margin-top:6px; max-width:620px; }
+      nav.links { margin-top:14px; font-size:14px; display:flex; gap:18px; flex-wrap:wrap; }
+      nav.links a { color:var(--accent-alt); font-weight:600; }
+      h1 { font-size:25px; margin:34px 0 6px; }
+      .card { background:var(--card); border:1px solid rgba(238,247,245,0.12); border-radius:12px; padding:18px 20px; margin:18px 0; }
+      .note { color:var(--muted); font-size:14px; }
+      footer { margin-top:56px; border-top:1px solid rgba(238,247,245,0.14); padding-top:20px; color:var(--muted); font-size:14px; }
+      footer .ta-line { color:var(--accent); font-weight:700; }
+    </style>
   </head>
   <body>
-    <h1>உங்கள் சொத்து / UngalSoththu</h1>
-    <p>இது உங்கள் சொத்து - நகர்ப்புற போக்குவரத்து பொறுப்புக்கூறல்</p>
-    <p>This is Your Asset - Urban Transit Accountability</p>
-    <nav>
-      <a href="/">English</a>
-      <a href="/ta/">தமிழ்</a>
-    </nav>
+    <div class="wrap">
+      <header>
+        <div class="wordmark"><span class="en">UNGALSOTHTHU</span><a href="/ta/" style="color:inherit">உங்கள் சொத்து</a></div>
+        <div class="tagline">பொதுப் போக்குவரத்தும் நகர வளர்ச்சியும் — திறந்த தரவுகளுடன் ஆய்வு. சென்னை &amp; தமிழ்நாடு: MTC, CMRL, புறநகர் ரயில், CUMTA, TNSTC, SETC.</div>
+        <nav class="links">
+          <a href="/">English</a>
+          <a href="/ta/">முகப்பு</a>
+          <a href="https://x.com/UngalSoththu">X-இல் @UngalSoththu</a>
+          <a href="https://logicinczo.github.io/chennai-flood-undersight/">ChennaiFloodUndersight</a>
+        </nav>
+      </header>
+
+      <h1>பொதுப் போக்குவரத்து — உங்களுடையது</h1>
+      <div class="card">
+        <strong><a href="/daily-briefs/">தினசரி போக்குவரத்து செய்திகள் →</a></strong><br />
+        கடந்த 24 மணி நேர சென்னை/தமிழ்நாடு போக்குவரத்து செய்திகள் — ஒவ்வொரு செய்திக்கும்
+        பத்திரிகை, தேதி, இணைப்பு. அதே தொகுப்பு தினமும்
+        <a href="https://x.com/UngalSoththu">@UngalSoththu</a>-இல்.
+        <div class="note">(தற்போது ஆங்கிலத்தில்)</div>
+      </div>
+      <div class="card">
+        <strong><a href="/grm-weekly/">வாராந்திர புகார் மறுமொழி தணிக்கை →</a></strong><br />
+        X-இல் பயணிகள் புகார்களும் அமைப்புகளின் பதில்களும் — ஒப்புகை போதாது,
+        தீர்வு என்ன என்பதைக் கண்காணிக்கிறோம்.
+      </div>
+      <div class="card">
+        <strong><a href="https://github.com/ungalsoththu">போக்குவரத்து தரவுத் திட்டங்கள் →</a></strong><br />
+        <a href="https://github.com/ungalsoththu/VandiPattiyal">வண்டிப்பத்தியல்</a> (MTC வண்டிப்பட்டியல்) ·
+        <a href="https://github.com/ungalsoththu/chennai-gtfs">chennai-gtfs</a> (திறந்த GTFS) ·
+        <a href="https://github.com/ungalsoththu/grievance-scout">grievance-scout</a>
+      </div>
+
+      <footer>
+        <div><a href="https://cashlessconsumer.in">CashlessConsumer</a> இன் UngalSoththu பிரிவு வெளியிடுகிறது. மூலங்கள்: இணைக்கப்பட்ட செய்தி அறிக்கைகள்; புள்ளிவிவரங்கள் மேற்கோள் காட்டிய நாளிதழின் தேதியின்படி.</div>
+        <div class="ta-line">பொதுப் போக்குவரத்து ஒரு பொது சொத்து. இது உங்கள் சொத்து.</div>
+      </footer>
+    </div>
   </body>
 </html>
