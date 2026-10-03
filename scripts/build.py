@@ -237,7 +237,7 @@ in the config because riders still tag old names.</div>
 <p>Detection improves through three published artifacts, all in the
 <a href="https://github.com/ungalsoththu/ungalsoththu.github.io/tree/main/detection">repo's <code>detection/</code> folder</a>:</p>
 <ul>
-<li><strong>Config</strong> — <a href="detection.json"><code>grm-detection.json</code></a>: the watchlist,
+<li><strong>Config</strong> — <a href="grm-detection.json"><code>grm-detection.json</code></a>: the watchlist,
 search patterns, include/exclude and reply rules the agent actually executes.</li>
 <li><strong>Changelog</strong> — <a href="CHANGELOG.md"><code>CHANGELOG.md</code></a>: every config change
 with the lesson that triggered it.</li>
