@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>How the weekly GRM audit is made · UngalSoththu — உங்கள் சொத்து</title>
+<meta name="description" content="Methodology of the weekly India transit grievance-redressal audit: watchlist, detection rules, changelog and labeled eval set.">
+<meta property="og:title" content="How the weekly GRM audit is made · UngalSoththu — உங்கள் சொத்து">
+<meta property="og:description" content="Methodology of the weekly India transit grievance-redressal audit: watchlist, detection rules, changelog and labeled eval set.">
+<meta property="og:image" content="https://ungalsoththu.github.io/og.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&family=Noto+Sans+Tamil:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #0b2e2f; --fg: #eef7f5; --muted: #c9e4e0;
+  --accent: #f0b429; --accent-alt: #8fd0c8;
+  --danger: #c62828; --card: rgba(17,52,53,0.85);
+}
+* { box-sizing: border-box; }
+body {
+  margin: 0; background: var(--bg); color: var(--fg);
+  font-family: Inter, 'Noto Sans Tamil', system-ui, sans-serif;
+  line-height: 1.65; -webkit-font-smoothing: antialiased;
+}
+a { color: var(--accent); text-decoration: none; }
+a:hover { text-decoration: underline; }
+.wrap { max-width: 780px; margin: 0 auto; padding: 0 20px 64px; }
+header.site {
+  border-bottom: 1px solid rgba(238,247,245,0.14);
+  padding: 28px 0 22px; margin-bottom: 8px;
+}
+.wordmark {
+  font-size: 26px; font-weight: 800; letter-spacing: 0.14em; color: var(--fg);
+}
+.wordmark .ta { color: var(--accent-alt); font-weight: 600; letter-spacing: 0; margin-left: 10px; }
+.tagline { color: var(--muted); font-size: 15px; margin-top: 6px; max-width: 620px; }
+nav.links { margin-top: 14px; font-size: 14px; display: flex; gap: 18px; flex-wrap: wrap; }
+nav.links a { color: var(--accent-alt); font-weight: 600; }
+h1 { font-size: 26px; margin: 34px 0 6px; }
+h2 { font-size: 19px; margin: 30px 0 10px; color: var(--accent-alt); }
+section.brief-list { margin-top: 18px; }
+.brief-row {
+  display: flex; align-items: baseline; gap: 14px;
+  padding: 10px 0; border-bottom: 1px solid rgba(238,247,245,0.09);
+}
+.brief-row .date { min-width: 150px; font-weight: 700; color: var(--fg); }
+.brief-row .meta { color: var(--muted); font-size: 14px; }
+.brief-row .thread { margin-left: auto; font-size: 13px; white-space: nowrap; }
+.card {
+  background: var(--card); border: 1px solid rgba(238,247,245,0.12);
+  border-radius: 12px; padding: 18px 20px; margin: 18px 0;
+}
+article {
+  background: var(--card); border: 1px solid rgba(238,247,245,0.12);
+  border-radius: 12px; padding: 26px 30px; margin-top: 18px;
+}
+article h1 { font-size: 24px; margin-top: 0; }
+article h2 { color: var(--accent-alt); }
+article a { word-break: break-word; }
+article blockquote {
+  border-left: 3px solid var(--accent); margin: 14px 0; padding: 2px 16px;
+  color: var(--muted);
+}
+.crumb { font-size: 13px; color: var(--muted); margin-top: 22px; }
+.crumb a { color: var(--accent-alt); }
+footer.site {
+  margin-top: 56px; border-top: 1px solid rgba(238,247,245,0.14);
+  padding-top: 20px; color: var(--muted); font-size: 14px;
+}
+footer.site .ta-line { color: var(--accent); font-weight: 700; }
+.updated { color: var(--muted); font-size: 13px; margin-top: 4px; }table { border-collapse: collapse; margin: 12px 0; width: 100%; }
+table td, table th { border: 1px solid rgba(238,247,245,0.18); padding: 8px 12px; text-align: left; font-size: 0.93em; }
+table th { background: rgba(240,180,41,0.12); }
+table .dim { font-weight: 400; }
+.cols { display: flex; gap: 24px; flex-wrap: wrap; }
+.cols > div { flex: 1; min-width: 260px; }
+.cols ul { padding-left: 20px; margin: 6px 0; }
+.dim { color: var(--muted); font-size: 0.9em; }
+</style>
+</head>
+<body>
+<div class="wrap">
+<header class="site">
+  <div class="wordmark"><a href="/" style="color:inherit">UNGALSOTHTHU</a><span class="ta">உங்கள் சொத்து</span></div>
+  <div class="tagline">Public transit and urban infrastructure, examined with open data — in the public interest. Chennai &amp; Tamil Nadu: MTC, CMRL, suburban rail, CUMTA, TNSTC, SETC.</div>
+  <nav class="links">
+    <a href="/">Home</a>
+    <a href="/daily-briefs/">Daily briefs</a>
+    <a href="/grm-weekly/">GRM weeklies</a>
+    <a href="https://x.com/UngalSoththu">@UngalSoththu on X</a>
+    <a href="https://logicinczo.github.io/chennai-flood-undersight/">ChennaiFloodUndersight</a>
+  </nav>
+</header>
+
+<div class="crumb"><a href="index.html">← All audits</a></div>
+<h1>How this audit is made — and how it improves</h1>
+<div class="updated">The weekly grievance-redress audit is produced by a scheduled agent
+running against the watchlist and rules on this page. The configuration is versioned,
+published in full, and changes only through a logged decision (see the changelog below).
+Config version <strong>1.1</strong>, updated 2026-10-03.</div>
+
+<h2>The pipeline</h2>
+<ol>
+<li><strong>Watchlist.</strong> Search the agencies below on X, over the past 7 days, using
+the patterns in <code>grm-detection.json</code> (mentions of the agency handle and replies from it,
+date-filtered).</li>
+<li><strong>Classify.</strong> Keep passenger grievances about a specific service failure.
+Exclude praise, feature requests and official announcements — the full include/exclude
+rules are published with the config.</li>
+<li><strong>Dedupe.</strong> One incident = one complaint, however many posts; follow-ups
+merge into the original.</li>
+<li><strong>Replies.</strong> Detect any visible reply from the agency handle. A reply may be
+just a forward or a docket number — acknowledged is explicitly not resolved, and each
+report says which.</li>
+<li><strong>Measure.</strong> Response rate, category counts, approximate response times
+decoded from post IDs.</li>
+<li><strong>Publish.</strong> Report goes live here, to the archive index, and a summary to
+Telegram the same morning.</li>
+<li><strong>Review &amp; improve.</strong> After every run the agent reviews what it may have
+missed; watchlist or rule changes land as a new config version with a changelog entry,
+and the labeled eval set below is re-checked.</li>
+</ol>
+
+<h2>The watchlist</h2>
+<table>
+<tr><th>Agency</th><th>X handle</th><th>City</th></tr>
+<tr><td>MTC Chennai</td><td>@MtcChennai<div class="dim">was: @mtc_chennai</div></td><td>Chennai</td></tr>
+<tr><td>CMRL (Chennai Metro)</td><td>@cmrlofficial<div class="dim">was: @cmrlchennai</div></td><td>Chennai</td></tr>
+<tr><td>Chennai Suburban &amp; MRTS (SR)</td><td>@drmsrchennai</td><td>Chennai</td></tr>
+<tr><td>CUMTA</td><td>@CumtaChennai</td><td>Chennai</td></tr>
+<tr><td>TNSTC (statewide)</td><td>@TNSTCofficial</td><td>Tamil Nadu</td></tr>
+<tr><td>SETC</td><td>@setc_coach</td><td>Tamil Nadu</td></tr>
+<tr><td>BEST Mumbai</td><td>@myBESTBus</td><td>Mumbai</td></tr>
+<tr><td>BMTC Bengaluru</td><td>@BMTC_BENGALURU</td><td>Bengaluru</td></tr>
+<tr><td>DTC Delhi</td><td>@dtchq_delhi<div class="dim">was: @dtc_india</div></td><td>Delhi</td></tr>
+<tr><td>KSRTC Kerala</td><td>@keralasrtc<div class="dim">was: @KSRTC_Kerala</div></td><td>Kerala</td></tr>
+</table>
+<div class="dim">Handles go stale when agencies rename accounts — a silent week of zero
+complaints is treated as a stale-handle smell, not a finding. Previous handles are kept
+in the config because riders still tag old names.</div>
+
+<h2>What counts, what doesn't</h2>
+<div class="cols">
+<div><strong>Included</strong>
+<ul><li>passenger grievances about a specific service failure: delay, crowding, route/frequency gaps, fare or ticketing problems, staff conduct, safety/accessibility, cleanliness, breakdowns</li><li>threads where the rider tags the agency handle (current or legacy) — merge follow-ups into the original incident</li></ul></div>
+<div><strong>Excluded</strong>
+<ul><li>praise, thanks and appreciation posts</li><li>feature requests and app suggestions</li><li>official announcements and scheduler data posted by the agency</li><li>national transit stories that do not name a specific failure at the agency</li><li>observations that do not establish a specific failure (e.g. &#x27;conductors prefer direct payment&#x27; with no incident)</li></ul></div>
+</div>
+<div class="dim">Categories: delay, crowding, route/frequency, fare/ticketing, staff conduct, safety/accessibility, cleanliness, breakdown/maintenance, other.</div>
+
+<h2>Known limits</h2>
+<div class="card">X-visible sample only — DMs, deleted posts and encrypted conversations are invisible. An agency reply means any visible response, including a generic forward or docket; it does not imply resolution. Response intervals are approximate, decoded from post IDs. This is not a count of all complaints the agencies receive.</div>
+
+<h2>The self-improvement loop</h2>
+<p>Detection improves through three published artifacts, all in the
+<a href="https://github.com/ungalsoththu/ungalsoththu.github.io/tree/main/detection">repo's <code>detection/</code> folder</a>:</p>
+<ul>
+<li><strong>Config</strong> — <a href="detection.json"><code>grm-detection.json</code></a>: the watchlist,
+search patterns, include/exclude and reply rules the agent actually executes.</li>
+<li><strong>Changelog</strong> — <a href="CHANGELOG.md"><code>CHANGELOG.md</code></a>: every config change
+with the lesson that triggered it.</li>
+<li><strong>Eval set</strong> — <a href="eval-set.json"><code>eval-set.json</code></a>: 13 labeled
+complaint posts (5 with known agency replies) plus 3 known-miss drills,
+seeded from past audits. After any config change, these must still be detected correctly
+before the change ships.</li>
+</ul>
+<h1 id="detection-changelog">Detection changelog</h1>
+<p>Every change to <code>grm-detection.json</code> lands here first:
+what changed, the lesson that triggered it, and the eval-set outcome
+after the change.</p>
+<h2 id="v11--2026-10-03--stale-handle-repair">v1.1 — 2026-10-03 ·
+stale-handle repair</h2>
+<p><strong>Lesson.</strong> The first audits under-counted Chennai and
+read Kerala as silent. Four of the ten watchlist handles were stale:
+<code>@mtc_chennai</code> → <code>@MtcChennai</code>,
+<code>@cmrlchennai</code> → <code>@cmrlofficial</code>,
+<code>@dtc_india</code> → <code>@dtchq_delhi</code>, and
+<code>@KSRTC_Kerala</code> was never the Kerala agency at all (it is
+<code>@keralasrtc</code>). A week of "no complaints found" was really a
+dead watch.</p>
+<p><strong>Change.</strong> Corrected all four handles; added
+<code>handle_history</code> so searches also cover legacy names riders
+still tag; added the <code>zero_complaint_check</code> rule — a zero
+week for a known-active agency triggers a handle-liveness check before
+it can be reported.</p>
+<p><strong>Eval.</strong> 13 labeled complaint cases + 3 known-miss
+drills seeded from the 2026-09-26 and 2026-10-03 audits; all cases
+correctly classifiable under v1.1 rules (legacy-tag thread
+<code>sibin_91/2105505463530063992</code> recovered via the reply from
+the current handle).</p>
+<h2 id="v10--2026-03-30--initial-watchlist">v1.0 — 2026-03-30 · initial
+watchlist</h2>
+<p>Weekly audit automation created: 10 agencies, 7-day window,
+complaint/reply detection, "acknowledged is not resolved" reporting
+rule.</p>
+
+
+<footer class="site">
+  <div>Published by the UngalSoththu desk of <a href="https://cashlessconsumer.in">CashlessConsumer</a>. Sources: linked news reports and agency replies; figures are as reported by the cited publication on the cited date.</div>
+  <div class="ta-line">Public transit is a public asset. இது உங்கள் சொத்து.</div>
+</footer>
+</div>
+</body>
+</html>

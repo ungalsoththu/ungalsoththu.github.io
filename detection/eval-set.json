@@ -1,0 +1,23 @@
+{
+  "description": "Labeled regression set for the GRM weekly detection. Seeded from the 2026-09-26 and 2026-10-03 audits. After any config change, run the current search + classification rules against every case; a change ships only when all complaint cases are still detected with the right agency and category, and every drill reproduces the documented miss or exclusion.",
+  "complaint_cases": [
+    {"url": "https://x.com/Guhan127/status/2104772093841986025", "agency": "mtc", "category": "delay", "replied": true, "note": "Route 104 frequency; MTC replied ~16 min with stated review — the label tests reply detection on the current handle"},
+    {"url": "https://x.com/sibin_91/status/2105505463530063992", "agency": "mtc", "category": "safety/accessibility", "replied": true, "note": "Airport terminal walk; thread originally tags LEGACY @MTC_Chennai, answered by current @MtcChennai — the legacy-handle recovery case"},
+    {"url": "https://x.com/candctrades/status/2105924372196438105", "agency": "cmrl", "category": "cleanliness", "replied": false, "note": "Underground-station ventilation/comfort; zero-reply week that exposed the stale @cmrlchennai handle"},
+    {"url": "https://x.com/PdTamilnadu/status/2106171167283528068", "agency": "cmrl", "category": "fare/ticketing", "replied": false, "note": "Refund; underspecified grievance — must still count as a complaint, flagged as unverified"},
+    {"url": "https://x.com/HiteshSodhaviya/status/2105850661481160991", "agency": "best", "category": "delay", "replied": false, "note": "Route 252 running late"},
+    {"url": "https://x.com/MhmMomin96153/status/2105487271625707892", "agency": "best", "category": "route/frequency", "replied": true, "note": "BEST forwarded to HOD — the acknowledged-but-NOT-resolved label"},
+    {"url": "https://x.com/Sid_Malvankar/status/2106045588672487532", "agency": "best", "category": "breakdown/maintenance", "replied": false, "note": "Breakdown at Makka Wadi; asks for contractor penalty"},
+    {"url": "https://x.com/MeSavitha/status/2106038515473764671", "agency": "bmtc", "category": "fare/ticketing", "replied": false, "note": "Conductor refused DigiLocker Aadhaar for free ticket"},
+    {"url": "https://x.com/dhoomaketu/status/2105669724298510748", "agency": "bmtc", "category": "safety/accessibility", "replied": true, "note": "Docket BMTC2026015936 acknowledged, no outcome — docket-counts-as-reply-not-resolution"},
+    {"url": "https://x.com/IndusFederalist/status/2105987445103681562", "agency": "bmtc", "category": "delay", "replied": false, "note": "V365 two departures merged into one"},
+    {"url": "https://x.com/shiv01delhi/status/2106049684561383494", "agency": "dtc", "category": "staff conduct", "replied": true, "note": "Apology + depot referral; tests reply detection on the corrected @dtchq_delhi handle"},
+    {"url": "https://x.com/KundanShroff01/status/2106093926210019433", "agency": "dtc", "category": "fare/ticketing", "replied": false, "note": "AC pass not accepted on Green City buses"},
+    {"url": "https://x.com/EsMunirath15920/status/2106051927335436294", "agency": "bmtc", "category": "safety/accessibility", "replied": false, "note": "Unverified seat-belt allegation naming BMTC and KSRTC; must count, flagged unverified"}
+  ],
+  "known_miss_drills": [
+    {"agency": "ksrtc-kl", "scenario": "Search only @KSRTC_Kerala (the removed handle)", "expected": "0 results — proves the drill reproduces the original miss; under v1.1 the search must use @keralasrtc and the zero_complaint_check"},
+    {"agency": "mtc", "scenario": "A complaint thread tagging only legacy @MTC_Chennai", "expected": "Detected via handle_history search even though the current handle is @MtcChennai"},
+    {"scenario": "A rider praising a new AC bus and suggesting an app feature", "expected": "EXCLUDED — praise + feature request, not a grievance"}
+  ]
+}

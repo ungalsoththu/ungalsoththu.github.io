@@ -27,6 +27,7 @@ PUBLIC = SITE / "public"
 BRIEFS = PUBLIC / "daily-briefs"
 REPORTS = PUBLIC / "grm-weekly"
 SITE_URL = "https://ungalsoththu.github.io"
+DETECTION = SITE / "detection"
 
 PALETTE = {
     "bg": "#0b2e2f",
@@ -96,7 +97,14 @@ footer.site {{
   padding-top: 20px; color: var(--muted); font-size: 14px;
 }}
 footer.site .ta-line {{ color: var(--accent); font-weight: 700; }}
-.updated {{ color: var(--muted); font-size: 13px; margin-top: 4px; }}
+.updated {{ color: var(--muted); font-size: 13px; margin-top: 4px; }}table {{ border-collapse: collapse; margin: 12px 0; width: 100%; }}
+table td, table th {{ border: 1px solid rgba(238,247,245,0.18); padding: 8px 12px; text-align: left; font-size: 0.93em; }}
+table th {{ background: rgba(240,180,41,0.12); }}
+table .dim {{ font-weight: 400; }}
+.cols {{ display: flex; gap: 24px; flex-wrap: wrap; }}
+.cols > div {{ flex: 1; min-width: 260px; }}
+.cols ul {{ padding-left: 20px; margin: 6px 0; }}
+.dim {{ color: var(--muted); font-size: 0.9em; }}
 """
 
 HEADER = """<header class="site">
@@ -148,6 +156,106 @@ def render_md(md_path: Path) -> str:
         ["pandoc", "-f", "gfm", "-t", "html5", str(md_path)],
         check=True, capture_output=True, text=True,
     ).stdout
+
+def build_method() -> None:
+    """Render public/grm-weekly/how.html from detection/ and publish raw configs."""
+    import json
+    cfg = json.loads((DETECTION / "grm-detection.json").read_text(encoding="utf-8"))
+    evals = json.loads((DETECTION / "eval-set.json").read_text(encoding="utf-8"))
+
+    watch_rows = []
+    for a in cfg["agencies"]:
+        hist = ""
+        if a.get("handle_history"):
+            olds = ", ".join("@" + h["handle"] for h in a["handle_history"])
+            hist = f'<div class="dim">was: {html.escape(olds)}</div>'
+        watch_rows.append(
+            f'<tr><td>{html.escape(a["name"])}</td><td>@{html.escape(a["handle"])}{hist}</td>'
+            f'<td>{html.escape(a["city"])}</td></tr>')
+    watch_html = "\n".join(watch_rows)
+
+    inc = "".join(f"<li>{html.escape(x)}</li>" for x in cfg["include"])
+    exc = "".join(f"<li>{html.escape(x)}</li>" for x in cfg["exclude"])
+    cats = ", ".join(cfg["categories"])
+    n_cases = len(evals["complaint_cases"])
+    n_drills = len(evals["known_miss_drills"])
+    n_replied = sum(1 for c in evals["complaint_cases"] if c.get("replied"))
+    changelog_html = render_md(DETECTION / "CHANGELOG.md")
+
+    body = f"""
+<div class="crumb"><a href="index.html">← All audits</a></div>
+<h1>How this audit is made — and how it improves</h1>
+<div class="updated">The weekly grievance-redress audit is produced by a scheduled agent
+running against the watchlist and rules on this page. The configuration is versioned,
+published in full, and changes only through a logged decision (see the changelog below).
+Config version <strong>{html.escape(cfg['version'])}</strong>, updated {html.escape(cfg['updated'])}.</div>
+
+<h2>The pipeline</h2>
+<ol>
+<li><strong>Watchlist.</strong> Search the agencies below on X, over the past 7 days, using
+the patterns in <code>grm-detection.json</code> (mentions of the agency handle and replies from it,
+date-filtered).</li>
+<li><strong>Classify.</strong> Keep passenger grievances about a specific service failure.
+Exclude praise, feature requests and official announcements — the full include/exclude
+rules are published with the config.</li>
+<li><strong>Dedupe.</strong> One incident = one complaint, however many posts; follow-ups
+merge into the original.</li>
+<li><strong>Replies.</strong> Detect any visible reply from the agency handle. A reply may be
+just a forward or a docket number — acknowledged is explicitly not resolved, and each
+report says which.</li>
+<li><strong>Measure.</strong> Response rate, category counts, approximate response times
+decoded from post IDs.</li>
+<li><strong>Publish.</strong> Report goes live here, to the archive index, and a summary to
+Telegram the same morning.</li>
+<li><strong>Review &amp; improve.</strong> After every run the agent reviews what it may have
+missed; watchlist or rule changes land as a new config version with a changelog entry,
+and the labeled eval set below is re-checked.</li>
+</ol>
+
+<h2>The watchlist</h2>
+<table>
+<tr><th>Agency</th><th>X handle</th><th>City</th></tr>
+{watch_html}
+</table>
+<div class="dim">Handles go stale when agencies rename accounts — a silent week of zero
+complaints is treated as a stale-handle smell, not a finding. Previous handles are kept
+in the config because riders still tag old names.</div>
+
+<h2>What counts, what doesn't</h2>
+<div class="cols">
+<div><strong>Included</strong>
+<ul>{inc}</ul></div>
+<div><strong>Excluded</strong>
+<ul>{exc}</ul></div>
+</div>
+<div class="dim">Categories: {html.escape(cats)}.</div>
+
+<h2>Known limits</h2>
+<div class="card">{html.escape(cfg['limits'])}</div>
+
+<h2>The self-improvement loop</h2>
+<p>Detection improves through three published artifacts, all in the
+<a href="https://github.com/ungalsoththu/ungalsoththu.github.io/tree/main/detection">repo's <code>detection/</code> folder</a>:</p>
+<ul>
+<li><strong>Config</strong> — <a href="detection.json"><code>grm-detection.json</code></a>: the watchlist,
+search patterns, include/exclude and reply rules the agent actually executes.</li>
+<li><strong>Changelog</strong> — <a href="CHANGELOG.md"><code>CHANGELOG.md</code></a>: every config change
+with the lesson that triggered it.</li>
+<li><strong>Eval set</strong> — <a href="eval-set.json"><code>eval-set.json</code></a>: {n_cases} labeled
+complaint posts ({n_replied} with known agency replies) plus {n_drills} known-miss drills,
+seeded from past audits. After any config change, these must still be detected correctly
+before the change ships.</li>
+</ul>
+{changelog_html}
+"""
+    (REPORTS / "how.html").write_text(
+        page("How the weekly GRM audit is made · UngalSoththu — உங்கள் சொத்து",
+             "Methodology of the weekly India transit grievance-redressal audit: "
+             "watchlist, detection rules, changelog and labeled eval set.",
+             body),
+        encoding="utf-8")
+    for name in ("grm-detection.json", "eval-set.json", "CHANGELOG.md"):
+        shutil.copyfile(DETECTION / name, REPORTS / name)
 
 
 def fmt_date(iso: str) -> str:
@@ -265,6 +373,7 @@ def build_reports_index(reports: list[dict]) -> None:
     body = f"""
 <h1>Weekly grievance-redress audits</h1>
 <div class="updated">India-wide weekly audit of passenger complaints and visible agency replies on X — acknowledgement is not a fix; we track whether anything was actually resolved.</div>
+<div class="card"><strong>How is this made?</strong> A scheduled agent searches a published watchlist, and improves its own detection through a versioned, reviewed process. <a href="how.html">Read the methodology →</a></div>
 <section class="brief-list">
 {rep_html}
 </section>
@@ -281,7 +390,8 @@ def main() -> None:
     briefs, reports = sync_and_render()
     build_briefs_index(briefs)
     build_reports_index(reports)
-    print(f"built: {len(briefs)} briefs, {len(reports)} reports -> {PUBLIC}")
+    build_method()
+    print(f"built: {len(briefs)} briefs, {len(reports)} reports, method page -> {PUBLIC}")
 
 
 if __name__ == "__main__":

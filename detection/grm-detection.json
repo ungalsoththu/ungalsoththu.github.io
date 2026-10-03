@@ -1,0 +1,55 @@
+{
+  "version": "1.1",
+  "updated": "2026-10-03",
+  "purpose": "Single source of truth for the weekly India transit grievance-redressal audit. The scheduled agent reads this file to build its X searches and classification rules. Any change must bump the version and add a CHANGELOG.md entry.",
+  "window_days": 7,
+  "agencies": [
+    {
+      "id": "mtc",
+      "name": "MTC Chennai",
+      "handle": "MtcChennai",
+      "city": "Chennai",
+      "handle_history": [
+        {"handle": "mtc_chennai", "until": "2026-10-03", "reason": "stale — account renamed; riders still tag the old name, so search both"}
+      ]
+    },
+    {"id": "cmrl", "name": "CMRL (Chennai Metro)", "handle": "cmrlofficial", "city": "Chennai", "handle_history": [
+      {"handle": "cmrlchennai", "until": "2026-10-03", "reason": "stale — renamed"}
+    ]},
+    {"id": "swr", "name": "Chennai Suburban & MRTS (SR)", "handle": "drmsrchennai", "city": "Chennai", "handle_history": []},
+    {"id": "cumta", "name": "CUMTA", "handle": "CumtaChennai", "city": "Chennai", "handle_history": []},
+    {"id": "tnstc", "name": "TNSTC (statewide)", "handle": "TNSTCofficial", "city": "Tamil Nadu", "handle_history": []},
+    {"id": "setc", "name": "SETC", "handle": "setc_coach", "city": "Tamil Nadu", "handle_history": []},
+    {"id": "best", "name": "BEST Mumbai", "handle": "myBESTBus", "city": "Mumbai", "handle_history": []},
+    {"id": "bmtc", "name": "BMTC Bengaluru", "handle": "BMTC_BENGALURU", "city": "Bengaluru", "handle_history": []},
+    {"id": "dtc", "name": "DTC Delhi", "handle": "dtchq_delhi", "city": "Delhi", "handle_history": [
+      {"handle": "dtc_india", "until": "2026-10-03", "reason": "stale — renamed"}
+    ]},
+    {"id": "ksrtc-kl", "name": "KSRTC Kerala", "handle": "keralasrtc", "city": "Kerala", "handle_history": [
+      {"handle": "KSRTC_Kerala", "until": "2026-10-03", "reason": "stale — that handle is not the agency; searches returned zero and masked a dead watch"}
+    ]}
+  ],
+  "search_patterns": [
+    "to:{handle} since:{window_start} until:{window_end}",
+    "from:{handle} to:{author} since:{window_start} until:{window_end}",
+    "\"@{handle}\" since:{window_start} until:{window_end}"
+  ],
+  "search_notes": "Also search each handle_history handle alongside the current one — riders keep tagging old names after a rename. X date filters are approximate; verify post dates manually before counting.",
+  "include": [
+    "passenger grievances about a specific service failure: delay, crowding, route/frequency gaps, fare or ticketing problems, staff conduct, safety/accessibility, cleanliness, breakdowns",
+    "threads where the rider tags the agency handle (current or legacy) — merge follow-ups into the original incident"
+  ],
+  "exclude": [
+    "praise, thanks and appreciation posts",
+    "feature requests and app suggestions",
+    "official announcements and scheduler data posted by the agency",
+    "national transit stories that do not name a specific failure at the agency",
+    "observations that do not establish a specific failure (e.g. 'conductors prefer direct payment' with no incident)"
+  ],
+  "dedupe_rule": "One incident = one complaint. Follow-up posts, media add-ons and thread continuations merge into the original post; agency replies never count as complaints.",
+  "reply_rule": "Any visible reply from the agency handle counts as a reply — but a generic forward, docket number or apology is explicitly NOT a resolution. Every report must label forwarded/acknowledged cases as unresolved.",
+  "categories": ["delay", "crowding", "route/frequency", "fare/ticketing", "staff conduct", "safety/accessibility", "cleanliness", "breakdown/maintenance", "other"],
+  "metrics": ["response rate per agency", "category counts", "approximate response time decoded from post IDs"],
+  "zero_complaint_check": "If a known-active agency returns 0 complaints for the week, treat it as a stale-handle or date-filter smell: verify the handle still resolves (profile loads, recent posts exist) and check legacy handles before writing 'no complaints found'.",
+  "limits": "X-visible sample only — DMs, deleted posts and encrypted conversations are invisible. An agency reply means any visible response, including a generic forward or docket; it does not imply resolution. Response intervals are approximate, decoded from post IDs. This is not a count of all complaints the agencies receive."
+}

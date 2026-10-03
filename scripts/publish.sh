@@ -5,7 +5,7 @@ set -euo pipefail
 REPO_DIR="$(cd "$(dirname "$0")/.." && pwd)"
 cd "$REPO_DIR"
 python3 scripts/build.py
-git add src public scripts
+git add src public scripts detection
 if git diff --cached --quiet; then
   echo "publish: no changes"
   exit 0
