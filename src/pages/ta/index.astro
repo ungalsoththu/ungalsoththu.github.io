@@ -7,7 +7,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>உங்கள் சொத்து — UngalSoththu · சென்னை போக்குவரத்து, தமிழ்நாடு பொது சொத்துகள்</title>
-    <meta name="description" content="நகர்ப்புற போக்குவரத்தும் பொது சொத்துகளும் — திறந்த தரவுகளுடன் ஆய்வு. சென்னை முதல், தமிழ்நாடு முழுவதும்: MTC, CMRL, புறநகர் ரயில், CUMTA, TNSTC, SETC." />
+    <meta name="description" content="பொதுப் போக்குவரத்து ஒரு பொது சொத்து — அது பயன்படுத்துவோருக்கே உரியது. UngalSoththu திட்டங்கள் (வெற்றி பயணம் ஆய்வுக்கூடம், வண்டிப்பத்தியல், ChennaiFloodUndersight, chennai-gtfs) மற்றும் தினசரி கண்காணிப்பு." />
     <meta property="og:title" content="உங்கள் சொத்து — UngalSoththu · சென்னை போக்குவரத்து, தமிழ்நாடு பொது சொத்துகள்" />
     <meta property="og:image" content="/og.png" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -18,16 +18,30 @@
       body { margin:0; background:var(--bg); color:var(--fg); font-family:'Noto Sans Tamil',Inter,system-ui,sans-serif; line-height:1.75; -webkit-font-smoothing:antialiased; }
       a { color:var(--accent); text-decoration:none; }
       a:hover { text-decoration:underline; }
-      .wrap { max-width:780px; margin:0 auto; padding:0 20px 64px; }
+      .wrap { max-width:840px; margin:0 auto; padding:0 20px 64px; }
       header { border-bottom:1px solid rgba(238,247,245,0.14); padding:28px 0 22px; }
       .wordmark { font-size:28px; font-weight:700; color:var(--accent-alt); }
       .wordmark .en { color:var(--fg); font-weight:800; letter-spacing:0.14em; font-size:20px; margin-right:10px; }
-      .tagline { color:var(--muted); font-size:15px; margin-top:6px; max-width:620px; }
       nav.links { margin-top:14px; font-size:14px; display:flex; gap:18px; flex-wrap:wrap; }
       nav.links a { color:var(--accent-alt); font-weight:600; }
-      h1 { font-size:25px; margin:34px 0 6px; }
-      .card { background:var(--card); border:1px solid rgba(238,247,245,0.12); border-radius:12px; padding:18px 20px; margin:18px 0; }
+      .mission { margin:36px 0 8px; }
+      .mission h1 { font-size:27px; margin:0 0 12px; }
+      .mission p { margin:10px 0; max-width:44rem; }
+      .principles { margin:14px 0 0; padding:0; list-style:none; color:var(--muted); font-size:15px; }
+      .principles li { padding:3px 0 3px 24px; position:relative; }
+      .principles li::before { content:"→"; position:absolute; left:0; color:var(--accent); }
+      section { margin-top:44px; }
+      h2.label { font-size:15px; letter-spacing:0.12em; color:var(--accent); margin:0 0 14px; font-weight:700; }
+      .grid { display:grid; grid-template-columns:repeat(auto-fit, minmax(300px, 1fr)); gap:14px; }
+      .card { background:var(--card); border:1px solid rgba(238,247,245,0.12); border-radius:12px; padding:16px 18px; }
+      .grid .card { margin:0; }
+      .card strong { font-size:16px; }
+      .card .desc { color:var(--muted); font-size:14px; margin-top:6px; }
       .note { color:var(--muted); font-size:14px; }
+      ul.acts { list-style:none; margin:0; padding:0; }
+      ul.acts li { padding:12px 0; border-bottom:1px solid rgba(238,247,245,0.1); }
+      ul.acts li:last-child { border-bottom:none; }
+      ul.acts .desc { color:var(--muted); font-size:14px; margin-top:3px; }
       footer { margin-top:56px; border-top:1px solid rgba(238,247,245,0.14); padding-top:20px; color:var(--muted); font-size:14px; }
       footer .ta-line { color:var(--accent); font-weight:700; }
     </style>
@@ -36,44 +50,75 @@
     <div class="wrap">
       <header>
         <div class="wordmark"><span class="en">UNGALSOTHTHU</span><a href="/ta/" style="color:inherit">உங்கள் சொத்து</a></div>
-        <div class="tagline">நகர்ப்புற போக்குவரத்தும் பொது சொத்துகளும் — மக்களுக்குச் சொந்தமான அனைத்தும் — திறந்த தரவுகளுடன் ஆய்வு. சென்னை முதல், தமிழ்நாடு முழுவதும்: MTC, CMRL, புறநகர் ரயில், CUMTA, TNSTC, SETC — அவற்றைச் சுற்றியுள்ள வெள்ள முன்னெச்சரிக்கை அமைப்புகள், சாலைகள், பொது நிதி வரை.</div>
         <nav class="links">
           <a href="/">English</a>
           <a href="/ta/">முகப்பு</a>
           <a href="https://x.com/UngalSoththu">X-இல் @UngalSoththu</a>
-          <a href="https://logicinczo.github.io/chennai-flood-undersight/">ChennaiFloodUndersight</a>
         </nav>
       </header>
 
-      <h1>போக்குவரத்தும் பொது சொத்துகளும் — உங்களுடையது</h1>
-      <div class="card">
-        <strong><a href="/daily-briefs/">தினசரி போக்குவரத்து செய்திகள் →</a></strong><br />
-        கடந்த 24 மணி நேர சென்னை/தமிழ்நாடு போக்குவரத்து செய்திகள் — ஒவ்வொரு செய்திக்கும்
-        பத்திரிகை, தேதி, இணைப்பு. அதே தொகுப்பு தினமும்
-        <a href="https://x.com/UngalSoththu">@UngalSoththu</a>-இல்.
-        <div class="note">(தற்போது ஆங்கிலத்தில்)</div>
+      <div class="mission">
+        <h1>பொதுப் போக்குவரத்து ஒரு பொது சொத்து. அதைப் பயன்படுத்துவோருக்கே உரிமை.</h1>
+        <p>
+          UngalSoththu என்பது <a href="https://cashlessconsumer.in">CashlessConsumer</a> இன் போக்குவரத்து &amp;
+          பொது சொத்துகள் பிரிவு. சென்னையும் தமிழ்நாடும் மக்களுக்குச் சொந்தமான அமைப்புகளை —
+          பேருந்து, மெட்ரோ, புறநகர் ரயில், வெள்ள முன்னெச்சரிக்கை, சாலைகள், தரவுகள் —
+          எப்படி நிர்வகிக்கின்றன என்பதைக் கண்காணித்து, மூலங்களுடன் வெளியிடுகிறோம்.
+        </p>
+        <ul class="principles">
+          <li>ஒவ்வொரு எண்ணுக்கும் மூலம் — பத்திரிகை, தேதி, இணைப்பு.</li>
+          <li>ஃபீடர் சேவைகள், முதல்/கடைசி மைல், புகார் தீர்வு — கண்காட்சித் திட்டங்களுக்கு கொடுக்கும் கவனத்தை இவற்றுக்கும் கொடுக்கிறோம்.</li>
+          <li>ஆதாரத்தைப் பொறுத்தே பாராட்டும் திருத்தமும் — ஆட்சியில் யார் இருந்தாலும்.</li>
+        </ul>
       </div>
-      <div class="card">
-        <strong><a href="/grm-weekly/">வாராந்திர புகார் மறுமொழி தணிக்கை →</a></strong><br />
-        X-இல் பயணிகள் புகார்களும் அமைப்புகளின் பதில்களும் — ஒப்புகை போதாது,
-        தீர்வு என்ன என்பதைக் கண்காணிக்கிறோம்.
-      </div>      <div class="card">
-        <strong>சென்னைக்கு அப்பால் — தமிழ்நாடு</strong><br />
-        <a href="https://ungalsoththu.github.io/VetriPayanam/">வெற்றி பயணம்</a> விரிவடையும்போது, மாநிலம் தழுவிய
-        பொதுப் போக்குவரத்தும் எங்கள் கவனத்தில்: 18,413 TNSTC பேருந்துகளில் 12,692 (~69%)
-        பெண்கள் &amp; திருநங்கைகளுக்கு இலவசம் — தினமும் ~84.32 லட்சம் பயணங்கள், ஆண்டுக்கு ~₹6,000 கோடி.
-        புகார் தெரிவிக்கும் வழி இல்லாமை, SETC விலக்கம் — ஒவ்வொரு இடைவெளியும் MTC குறைபாட்டைப் போலவே
-        கண்காணிக்கப்படும்.
-        <a href="/daily-briefs/2026-10-03-daily-transit-brief.html">மூலம்: அக் 3 தினசரி சுருக்கம் →</a>
-      </div>
-      <div class="card">
-        <strong><a href="https://github.com/ungalsoththu">போக்குவரத்து தரவுத் திட்டங்கள் →</a></strong><br />
-        <a href="https://ungalsoththu.github.io/VetriPayanam/">வெற்றி பயணம் ஆய்வுக்கூடம்</a> (இலவச பேருந்து பயணம்: அரசாணைகள், செய்திகள், பகுப்பாய்வு) ·
-        <a href="https://github.com/ungalsoththu/VandiPattiyal">வண்டிப்பத்தியல்</a> (MTC வண்டிப்பட்டியல்) ·
-        <a href="https://github.com/ungalsoththu/chennai-gtfs">chennai-gtfs</a> (திறந்த GTFS) ·
-        <a href="https://github.com/ungalsoththu/grievance-scout">grievance-scout</a> ·
-        <a href="https://github.com/srikanthlogic/chennairains.org">chennairains.org</a> (மக்கள் திரட்டிய வெள்ள உதவிப் பட்டியல், 2015 முதல்)
-      </div>
+
+      <section>
+        <h2 class="label">திட்டங்கள்</h2>
+        <div class="grid">
+          <div class="card">
+            <strong><a href="https://ungalsoththu.github.io/VetriPayanam/">வெற்றி பயணம் ஆய்வுக்கூடம்</a></strong>
+            <div class="desc">பெண்கள் &amp; திருநங்கைகளுக்கான இலவச பேருந்து பயணம் — ஒரே கூரையின் கீழ்: அரசாணைகள், கட்டண வரம்புகள், செய்திப் பதிவேடு, சமூக ஊடகப் பகுப்பாய்வு, வாழும் புள்ளிவிவரங்கள். 12,692 பேருந்துகள் · தினமும் ~84.32 லட்சம் பயணங்கள் · ஆண்டுக்கு ~₹6,000 கோடி.</div>
+          </div>
+          <div class="card">
+            <strong><a href="https://vandipattiyal.vercel.app">வண்டிப்பத்தியல்</a></strong>
+            <div class="desc">MTC வண்டிப்பட்டியல் — சென்னையின் 3,800+ பேருந்துகள்; டிப்போ, வகை, ஏசி, சேவை வாரியாகத் தேடக்கூடிய திறந்த தரவு.</div>
+          </div>
+          <div class="card">
+            <strong><a href="https://logicinczo.github.io/chennai-flood-undersight/">ChennaiFloodUndersight</a></strong>
+            <div class="desc">₹107.2 கோடி RTFF &amp; SDSS வெள்ள முன்னெச்சரிக்கை அமைப்பு மீதான மக்கள் மேற்பார்வை — திறந்த தரவு வெளியீடுகள், தொழில்நுட்ப/பொருளாதாரத் தணிக்கை.</div>
+          </div>
+          <div class="card">
+            <strong><a href="https://github.com/ungalsoththu/chennai-gtfs">chennai-gtfs</a></strong>
+            <div class="desc">சென்னை பொதுப் போக்குவரத்துக்கான திறந்த GTFS அட்டவணைகள் — மீண்டும் பயன்படுத்தக்கூடிய தரப்படுத்தப்பட்ட வடிவத்தில்.</div>
+          </div>
+          <div class="card">
+            <strong><a href="https://github.com/srikanthlogic/chennairains.org">chennairains.org</a></strong>
+            <div class="desc">மக்கள் திரட்டிய வெள்ள உதவி வளங்களின் காப்பகம் — 2015 முதல்.</div>
+          </div>
+        </div>
+      </section>
+
+      <section>
+        <h2 class="label">தொடர் பணிகள்</h2>
+        <ul class="acts">
+          <li>
+            <strong><a href="/daily-briefs/">தினசரி போக்குவரத்து செய்திகள் →</a></strong>
+            <div class="desc">கடந்த 24 மணி நேர சென்னை/தமிழ்நாடு போக்குவரத்து செய்திகள் — ஒவ்வொரு செய்திக்கும் பத்திரிகை, தேதி, இணைப்பு. அதே தொகுப்பு தினமும் <a href="https://x.com/UngalSoththu">@UngalSoththu</a>-இல்.<span class="note"> (தற்போது ஆங்கிலத்தில்)</span></div>
+          </li>
+          <li>
+            <strong><a href="/grm-weekly/">வாராந்திர புகார் மறுமொழி தணிக்கை →</a></strong>
+            <div class="desc">X-இல் பயணிகள் புகார்களும் அமைப்புகளின் பதில்களும் — ஒப்புகை போதாது, தீர்வு என்ன என்பதைக் கண்காணிக்கிறோம்.</div>
+          </li>
+          <li>
+            <strong>தினசரி வெற்றி பயணக் கண்காணிப்பு</strong>
+            <div class="desc"><a href="https://ungalsoththu.github.io/VetriPayanam/">வெற்றி பயணம் ஆய்வுக்கூடத்தை</a> தினமும் இரவு புதுப்பிக்கும் தானியங்கி கண்காணிப்பு — செய்திகள், அரசாணைகள், சமூக ஊடகம், புள்ளிவிவரங்கள்.</div>
+          </li>
+          <li>
+            <strong>தகவல் உரிமை &amp; மேற்கோள் தடமறிதல்</strong>
+            <div class="desc">ஒவ்வொரு திட்டத்திற்கும் பின்னணியில் RTI கோரிக்கைகளும் மேற்கோள் ஆவணங்களும் — Chennai One ஒப்பந்தம் முதல் போக்குவரத்துத் துறை அரசாணைகள் வரை.</div>
+          </li>
+        </ul>
+      </section>
 
       <footer>
         <div><a href="https://cashlessconsumer.in">CashlessConsumer</a> இன் UngalSoththu பிரிவு வெளியிடுகிறது. மூலங்கள்: இணைக்கப்பட்ட செய்தி அறிக்கைகள்; புள்ளிவிவரங்கள் மேற்கோள் காட்டிய நாளிதழின் தேதியின்படி.</div>

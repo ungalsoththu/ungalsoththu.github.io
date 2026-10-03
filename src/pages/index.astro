@@ -7,7 +7,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>UngalSoththu — உங்கள் சொத்து · Chennai transit & TN commons</title>
-    <meta name="description" content="Urban transit and public assets (the commons), examined with open data — Chennai first, all of Tamil Nadu. MTC, CMRL, suburban rail, CUMTA, TNSTC, SETC. A CashlessConsumer desk." />
+    <meta name="description" content="Public transit is a public asset — riders own it. UngalSoththu is CashlessConsumer's transit & commons desk: projects (Vetri Payanam hub, Vandi Pattiyal, ChennaiFloodUndersight, chennai-gtfs) and daily monitoring for Chennai and Tamil Nadu." />
     <meta property="og:title" content="UngalSoththu — உங்கள் சொத்து · Chennai transit & TN commons" />
     <meta property="og:image" content="/og.png" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -18,15 +18,29 @@
       body { margin:0; background:var(--bg); color:var(--fg); font-family:Inter,'Noto Sans Tamil',system-ui,sans-serif; line-height:1.65; -webkit-font-smoothing:antialiased; }
       a { color:var(--accent); text-decoration:none; }
       a:hover { text-decoration:underline; }
-      .wrap { max-width:780px; margin:0 auto; padding:0 20px 64px; }
+      .wrap { max-width:840px; margin:0 auto; padding:0 20px 64px; }
       header { border-bottom:1px solid rgba(238,247,245,0.14); padding:28px 0 22px; }
       .wordmark { font-size:26px; font-weight:800; letter-spacing:0.14em; }
       .wordmark .ta { color:var(--accent-alt); font-weight:600; letter-spacing:0; margin-left:10px; }
-      .tagline { color:var(--muted); font-size:15px; margin-top:6px; max-width:620px; }
       nav.links { margin-top:14px; font-size:14px; display:flex; gap:18px; flex-wrap:wrap; }
       nav.links a { color:var(--accent-alt); font-weight:600; }
-      h1 { font-size:26px; margin:34px 0 6px; }
-      .card { background:var(--card); border:1px solid rgba(238,247,245,0.12); border-radius:12px; padding:18px 20px; margin:18px 0; }
+      .mission { margin:36px 0 8px; }
+      .mission h1 { font-size:28px; margin:0 0 12px; }
+      .mission p { margin:10px 0; max-width:44rem; }
+      .principles { margin:14px 0 0; padding:0; list-style:none; color:var(--muted); font-size:15px; }
+      .principles li { padding:3px 0 3px 24px; position:relative; }
+      .principles li::before { content:"→"; position:absolute; left:0; color:var(--accent); }
+      section { margin-top:44px; }
+      h2.label { font-size:13px; letter-spacing:0.16em; text-transform:uppercase; color:var(--accent); margin:0 0 14px; font-weight:800; }
+      .grid { display:grid; grid-template-columns:repeat(auto-fit, minmax(300px, 1fr)); gap:14px; }
+      .card { background:var(--card); border:1px solid rgba(238,247,245,0.12); border-radius:12px; padding:16px 18px; }
+      .grid .card { margin:0; }
+      .card strong { font-size:16px; }
+      .card .desc { color:var(--muted); font-size:14px; margin-top:6px; }
+      ul.acts { list-style:none; margin:0; padding:0; }
+      ul.acts li { padding:12px 0; border-bottom:1px solid rgba(238,247,245,0.1); }
+      ul.acts li:last-child { border-bottom:none; }
+      ul.acts .desc { color:var(--muted); font-size:14px; margin-top:3px; }
       footer { margin-top:56px; border-top:1px solid rgba(238,247,245,0.14); padding-top:20px; color:var(--muted); font-size:14px; }
       footer .ta-line { color:var(--accent); font-weight:700; }
     </style>
@@ -35,43 +49,74 @@
     <div class="wrap">
       <header>
         <div class="wordmark"><a href="/" style="color:inherit">UNGALSOTHTHU</a><span class="ta">உங்கள் சொத்து</span></div>
-        <div class="tagline">Urban transit and the commons — public assets owned by the public — examined with open data. Chennai first, all of Tamil Nadu: MTC, CMRL, suburban rail, CUMTA, TNSTC, SETC — and the flood systems, roads and public money around them.</div>
         <nav class="links">
           <a href="/">Home</a>
           <a href="/ta/">தமிழ்</a>
           <a href="https://x.com/UngalSoththu">@UngalSoththu on X</a>
-          <a href="https://logicinczo.github.io/chennai-flood-undersight/">ChennaiFloodUndersight</a>
         </nav>
       </header>
 
-      <h1>Transit and the commons, examined</h1>
-      <div class="card">
-        <strong><a href="/daily-briefs/">Daily transit briefs →</a></strong><br />
-        The last 24 hours of Chennai/Tamil Nadu transit news — every item with
-        publication, date and link. The same thread posted daily to
-        <a href="https://x.com/UngalSoththu">@UngalSoththu</a>.
+      <div class="mission">
+        <h1>Public transit is a public asset. Riders own it.</h1>
+        <p>
+          UngalSoththu is the transit &amp; public-assets desk of <a href="https://cashlessconsumer.in">CashlessConsumer</a>.
+          We watch how Chennai and Tamil Nadu run the systems their people own — buses, metro, suburban rail,
+          flood forecasting, roads, data — and publish what we find with the sources attached.
+        </p>
+        <ul class="principles">
+          <li>Every figure is sourced — publication, date, link.</li>
+          <li>Feeders, first/last-mile and grievance redress get the same scrutiny as showcase projects.</li>
+          <li>Praise and criticism follow evidence — whoever is in power.</li>
+        </ul>
       </div>
-      <div class="card">
-        <strong><a href="/grm-weekly/">Weekly grievance-redress audits →</a></strong><br />
-        India-wide audit of passenger complaints and visible agency replies on X.
-        Acknowledgement is not a fix — we track whether anything was resolved.
-      </div>      <div class="card">
-        <strong>Tamil Nadu, beyond Chennai</strong><br />
-        As <a href="https://ungalsoththu.github.io/VetriPayanam/">Vetri Payanam</a> scales, statewide
-        public transport is squarely in scope: 12,692 of 18,413 TNSTC buses (~69%) are now
-        zero-fare for women &amp; transgender riders — ~84.32 lakh trips/day, ~₹6,000 crore/year —
-        and every gap (missing grievance channels, SETC exclusion) gets the same
-        scrutiny as an MTC failure.
-        <a href="/daily-briefs/2026-10-03-daily-transit-brief.html">Sources: Oct 3 brief →</a>
-      </div>
-      <div class="card">
-        <strong><a href="https://github.com/ungalsoththu">Transit data projects →</a></strong><br />
-        <a href="https://ungalsoththu.github.io/VetriPayanam/">Vetri Payanam hub</a> (fare-free bus travel: G.O.s, news, social, metrics) ·
-        <a href="https://github.com/ungalsoththu/VandiPattiyal">VandiPattiyal</a> (MTC fleet list) ·
-        <a href="https://github.com/ungalsoththu/chennai-gtfs">chennai-gtfs</a> (open GTFS feeds) ·
-        <a href="https://github.com/ungalsoththu/grievance-scout">grievance-scout</a> (complaint monitoring) ·
-        <a href="https://github.com/srikanthlogic/chennairains.org">chennairains.org</a> (crowdsourced flood resources, 2015 →)
-      </div>
+
+      <section>
+        <h2 class="label">Projects</h2>
+        <div class="grid">
+          <div class="card">
+            <strong><a href="https://ungalsoththu.github.io/VetriPayanam/">Vetri Payanam hub</a></strong>
+            <div class="desc">Tamil Nadu's fare-free bus travel for women &amp; transgender persons, under one umbrella — G.O. ledger, fleet detail, news log, social watch, live metrics. 12,692 buses · ~84.32 lakh riders/day · ~₹6,000 cr/yr.</div>
+          </div>
+          <div class="card">
+            <strong><a href="https://vandipattiyal.vercel.app">Vandi Pattiyal</a></strong>
+            <div class="desc">MTC fleet explorer — 3,800+ Chennai buses by depot, make, AC and service type. Open data, searchable.</div>
+          </div>
+          <div class="card">
+            <strong><a href="https://logicinczo.github.io/chennai-flood-undersight/">ChennaiFloodUndersight</a></strong>
+            <div class="desc">Oversight from below for the ₹107.2-crore RTFF &amp; SDSS flood-forecasting system — open-data releases, technical &amp; economic audit, debt monitoring.</div>
+          </div>
+          <div class="card">
+            <strong><a href="https://github.com/ungalsoththu/chennai-gtfs">chennai-gtfs</a></strong>
+            <div class="desc">Open GTFS feeds for Chennai public transport — schedules in a standard, reusable format.</div>
+          </div>
+          <div class="card">
+            <strong><a href="https://github.com/srikanthlogic/chennairains.org">chennairains.org</a></strong>
+            <div class="desc">Crowdsourced flood-response resources for Chennai, archived since 2015.</div>
+          </div>
+        </div>
+      </section>
+
+      <section>
+        <h2 class="label">Activities</h2>
+        <ul class="acts">
+          <li>
+            <strong><a href="/daily-briefs/">Daily transit briefs →</a></strong>
+            <div class="desc">The last 24 hours of Chennai/Tamil Nadu transit news — every item with publication, date and link. Same thread daily on <a href="https://x.com/UngalSoththu">@UngalSoththu</a>.</div>
+          </li>
+          <li>
+            <strong><a href="/grm-weekly/">Weekly grievance-redress audits →</a></strong>
+            <div class="desc">India-wide audit of passenger complaints and visible agency replies on X. Acknowledgement is not a fix — we track whether anything was resolved.</div>
+          </li>
+          <li>
+            <strong>Daily Vetri Payanam watch</strong>
+            <div class="desc">Automated monitor feeding the <a href="https://ungalsoththu.github.io/VetriPayanam/">Vetri Payanam hub</a> — news, G.O.s, social narratives and metrics, updated every evening.</div>
+          </li>
+          <li>
+            <strong>RTI &amp; procurement trails</strong>
+            <div class="desc">Right-to-information requests and tender digging behind the projects — from Chennai One contracts to transport-department G.O.s.</div>
+          </li>
+        </ul>
+      </section>
 
       <footer>
         <div>Published by the UngalSoththu desk of <a href="https://cashlessconsumer.in">CashlessConsumer</a>. Sources: linked news reports and agency replies; figures are as reported by the cited publication on the cited date.</div>
