@@ -13,7 +13,7 @@ if git diff --cached --quiet; then
 fi
 git commit -q -m "daily briefs: $(date +%F)"
 if [ -n "${UNGALSOTHTHU_GH_TOKEN:-}" ]; then
-  PUSH_CMD=(git -c "credential.helper=!f() { echo username=x-access-token; echo password=${UNGALSOTHTHU_GH_TOKEN}; }; f" push origin main)
+  PUSH_CMD=(git -c credential.helper= -c "credential.helper=!f() { echo username=x-access-token; echo password=${UNGALSOTHTHU_GH_TOKEN}; }; f" push origin main)
 else
   echo "publish: UNGALSOTHTHU_GH_TOKEN not set — push will likely fail" >&2
   PUSH_CMD=(git push origin main)
