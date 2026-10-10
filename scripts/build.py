@@ -164,18 +164,24 @@ def build_method() -> None:
     evals = json.loads((DETECTION / "eval-set.json").read_text(encoding="utf-8"))
 
     watch_rows = []
+    search_terms = cfg.get("search_terms_by_agency", {})
     for a in cfg["agencies"]:
         hist = ""
         if a.get("handle_history"):
             olds = ", ".join("@" + h["handle"] for h in a["handle_history"])
             hist = f'<div class="dim">was: {html.escape(olds)}</div>'
+        terms = ", ".join(search_terms.get(a["id"], []))
         watch_rows.append(
             f'<tr><td>{html.escape(a["name"])}</td><td>@{html.escape(a["handle"])}{hist}</td>'
-            f'<td>{html.escape(a["city"])}</td></tr>')
+            f'<td>{html.escape(a["city"])}</td><td>{html.escape(terms)}</td></tr>')
     watch_html = "\n".join(watch_rows)
 
     inc = "".join(f"<li>{html.escape(x)}</li>" for x in cfg["include"])
     exc = "".join(f"<li>{html.escape(x)}</li>" for x in cfg["exclude"])
+    shared_dedupe = (
+        f'<li><strong>Shared accounts.</strong> {html.escape(cfg["cross_agency_dedupe_rule"])}</li>'
+        if cfg.get("cross_agency_dedupe_rule") else ""
+    )
     cats = ", ".join(cfg["categories"])
     n_cases = len(evals["complaint_cases"])
     n_drills = len(evals["known_miss_drills"])
@@ -193,13 +199,14 @@ Config version <strong>{html.escape(cfg['version'])}</strong>, updated {html.esc
 <h2>The pipeline</h2>
 <ol>
 <li><strong>Watchlist.</strong> Search the agencies below on X, over the past 7 days, using
-the patterns in <code>grm-detection.json</code> (mentions of the agency handle and replies from it,
-date-filtered).</li>
+the patterns in <code>grm-detection.json</code>: current/history handle mentions and replies,
+plus the configured broad-name searches, all date-filtered.</li>
 <li><strong>Classify.</strong> Keep passenger grievances about a specific service failure.
 Exclude praise, feature requests and official announcements — the full include/exclude
 rules are published with the config.</li>
 <li><strong>Dedupe.</strong> One incident = one complaint, however many posts; follow-ups
 merge into the original.</li>
+{shared_dedupe}
 <li><strong>Replies.</strong> Detect any visible reply from the agency handle. A reply may be
 just a forward or a docket number — acknowledged is explicitly not resolved, and each
 report says which.</li>
@@ -214,7 +221,7 @@ and the labeled eval set below is re-checked.</li>
 
 <h2>The watchlist</h2>
 <table>
-<tr><th>Agency</th><th>X handle</th><th>City</th></tr>
+<tr><th>Agency</th><th>X handle</th><th>City</th><th>Broad search terms</th></tr>
 {watch_html}
 </table>
 <div class="dim">Handles go stale when agencies rename accounts — a silent week of zero
