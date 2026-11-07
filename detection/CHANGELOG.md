@@ -35,3 +35,32 @@ known-active agency triggers a handle-liveness check before it can be reported.
 
 Weekly audit automation created: 10 agencies, 7-day window, complaint/reply detection,
 "acknowledged is not resolved" reporting rule.
+
+## v1.3 — 2026-11-07 · reply-side sweep + self-post/news exclusions
+
+**Lesson.** The 2026-11-07 audit's complaint-side searches read zero for Chennai Suburban, yet the
+agency's own replies proved five distinct passenger complaint threads in-window — raw-complaint
+searches alone undercount agencies that reply but whose complainants are hard to surface. Two
+judgment calls also needed codifying: the audit's own @UngalSoththu accountability threads kept
+surfacing in agency searches, and the real 3 Nov CMRL AFC-ticketing blackout appeared on X only as
+news summaries (DT Next links), never as a first-hand grievance. Kerala KSRTC searches meanwhile
+returned Karnataka KSRTC noise (Airavat, V Kaveri, Tumakuru) that must never be attributed to
+@keralasrtc.
+
+**Change.** Added a fifth search pattern — a plain `from:{handle}` reply sweep mandated every week
+for every agency, not only on zero weeks. Added two exclude rules: posts by the audit's own
+@UngalSoththu account, and news summaries/reposts with no first-hand passenger account in the
+thread. Added search notes on Karnataka-vs-Kerala KSRTC disambiguation and on @srdmekur1 as a
+candidate official-adjacent handle to verify (not added as a watch handle without profile
+evidence). No handle or category changes.
+
+**Eval.** All 13 labeled complaint cases still classify with the same agency and category under
+v1.3 (changes are additive exclusions/patterns only). All 3 known-miss drills still reproduce:
+the obsolete `@KSRTC_Kerala` handle returns zero, the MTC legacy-tag thread remains recoverable
+via handle_history, and praise + feature-request posts remain excluded.
+
+**Evidence.** [DRM reply sweep](https://x.com/DrmChennai) · [one of five reply-verified SR
+threads](https://x.com/DrmChennai/status/2118353572555624460) · [CMRL blackout news-only
+coverage](https://x.com/Raghuvp99/status/2117859528406630498) · [own-account thread
+sample](https://x.com/UngalSoththu/status/2117824232637772119) · [Karnataka KSRTC noise
+sample](https://x.com/akkitrends/status/2118026830167077191) · [@srdmekur1 candidate reply](https://x.com/srdmekur1/status/2117771360013521216).

@@ -1,6 +1,6 @@
 {
-  "version": "1.2",
-  "updated": "2026-10-10",
+  "version": "1.3",
+  "updated": "2026-11-07",
   "purpose": "Single source of truth for the weekly India transit grievance-redressal audit. The scheduled agent reads this file to build its X searches and classification rules. Any change must bump the version and add a CHANGELOG.md entry.",
   "window_days": 7,
   "agencies": [
@@ -53,9 +53,10 @@
     "to:{handle} since:{window_start} until:{window_end}",
     "from:{handle} to:{author} since:{window_start} until:{window_end}",
     "\"@{handle}\" since:{window_start} until:{window_end}",
-    "{search_term} since:{window_start} until:{window_end}"
+    "{search_term} since:{window_start} until:{window_end}",
+    "from:{handle} since:{window_start} until:{window_end}"
   ],
-  "search_notes": "Run one broad-name search for every search_terms_by_agency entry in addition to current and history-handle patterns; results must still pass the include/exclude rules. Search every handle_history handle because riders keep tagging old names after a rename. X date filters are approximate; verify post dates manually before counting. The @tnstc_setc profile self-describes both TNSTC and SETC; its official status is not independently linked from a government site in this audit, so monitor it as a shared candidate handle and flag the uncertainty.",
+  "search_notes": "Run one broad-name search for every search_terms_by_agency entry in addition to current and history-handle patterns; results must still pass the include/exclude rules. Search every handle_history handle because riders keep tagging old names after a rename. X date filters are approximate; verify post dates manually before counting. The @tnstc_setc profile self-describes both TNSTC and SETC; its official status is not independently linked from a government site in this audit, so monitor it as a shared candidate handle and flag the uncertainty. Run the plain from:{handle} reply sweep for every agency every week, not only on zero weeks: the 2026-11-07 audit found the complaint-side searches read zero for Chennai Suburban while the reply-side sweep proved five live complaint threads. Disambiguate Karnataka vs Kerala KSRTC — Karnataka brands and venues (Airavat, V Kaveri, Ambaari, Tumakuru) must never be attributed to @keralasrtc. Candidate to verify next week: @srdmekur1, an account replying to KSRTC complaints in official tone; do not add it as a watch handle without profile evidence.",
   "cross_agency_dedupe_rule": "When agencies share a handle, search it once. Attribute an incident only when the service/operator is identified; if attribution remains unclear, report it once as a shared/unassigned case and never double-count it across agencies.",
   "include": [
     "passenger grievances about a specific service failure: delay, crowding, route/frequency gaps, fare or ticketing problems, staff conduct, safety/accessibility, cleanliness, breakdowns",
@@ -66,7 +67,9 @@
     "feature requests and app suggestions",
     "official announcements and scheduler data posted by the agency",
     "national transit stories that do not name a specific failure at the agency",
-    "observations that do not establish a specific failure (e.g. 'conductors prefer direct payment' with no incident)"
+    "observations that do not establish a specific failure (e.g. 'conductors prefer direct payment' with no incident)",
+    "posts by the audit's own @UngalSoththu account — accountability commentary is not a passenger grievance",
+    "news summaries/reposts of an incident (including media links) with no first-hand passenger account in the thread"
   ],
   "dedupe_rule": "One incident = one complaint. Follow-up posts, media add-ons and thread continuations merge into the original post; agency replies never count as complaints.",
   "reply_rule": "Any visible reply from the agency handle counts as a reply — but a generic forward, docket number or apology is explicitly NOT a resolution. Every report must label forwarded/acknowledged cases as unresolved.",

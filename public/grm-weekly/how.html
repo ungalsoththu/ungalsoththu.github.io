@@ -97,7 +97,7 @@ table .dim { font-weight: 400; }
 <div class="updated">The weekly grievance-redress audit is produced by a scheduled agent
 running against the watchlist and rules on this page. The configuration is versioned,
 published in full, and changes only through a logged decision (see the changelog below).
-Config version <strong>1.2</strong>, updated 2026-10-10.</div>
+Config version <strong>1.3</strong>, updated 2026-11-07.</div>
 
 <h2>The pipeline</h2>
 <ol>
@@ -145,7 +145,7 @@ in the config because riders still tag old names.</div>
 <div><strong>Included</strong>
 <ul><li>passenger grievances about a specific service failure: delay, crowding, route/frequency gaps, fare or ticketing problems, staff conduct, safety/accessibility, cleanliness, breakdowns</li><li>threads where the rider tags the agency handle (current or legacy) — merge follow-ups into the original incident</li></ul></div>
 <div><strong>Excluded</strong>
-<ul><li>praise, thanks and appreciation posts</li><li>feature requests and app suggestions</li><li>official announcements and scheduler data posted by the agency</li><li>national transit stories that do not name a specific failure at the agency</li><li>observations that do not establish a specific failure (e.g. &#x27;conductors prefer direct payment&#x27; with no incident)</li></ul></div>
+<ul><li>praise, thanks and appreciation posts</li><li>feature requests and app suggestions</li><li>official announcements and scheduler data posted by the agency</li><li>national transit stories that do not name a specific failure at the agency</li><li>observations that do not establish a specific failure (e.g. &#x27;conductors prefer direct payment&#x27; with no incident)</li><li>posts by the audit&#x27;s own @UngalSoththu account — accountability commentary is not a passenger grievance</li><li>news summaries/reposts of an incident (including media links) with no first-hand passenger account in the thread</li></ul></div>
 </div>
 <div class="dim">Categories: delay, crowding, route/frequency, fare/ticketing, staff conduct, safety/accessibility, cleanliness, breakdown/maintenance, other.</div>
 
@@ -252,6 +252,46 @@ watchlist</h2>
 <p>Weekly audit automation created: 10 agencies, 7-day window,
 complaint/reply detection, "acknowledged is not resolved" reporting
 rule.</p>
+<h2
+id="v13--2026-11-07--reply-side-sweep--self-postnews-exclusions">v1.3 —
+2026-11-07 · reply-side sweep + self-post/news exclusions</h2>
+<p><strong>Lesson.</strong> The 2026-11-07 audit's complaint-side
+searches read zero for Chennai Suburban, yet the agency's own replies
+proved five distinct passenger complaint threads in-window —
+raw-complaint searches alone undercount agencies that reply but whose
+complainants are hard to surface. Two judgment calls also needed
+codifying: the audit's own @UngalSoththu accountability threads kept
+surfacing in agency searches, and the real 3 Nov CMRL AFC-ticketing
+blackout appeared on X only as news summaries (DT Next links), never as
+a first-hand grievance. Kerala KSRTC searches meanwhile returned
+Karnataka KSRTC noise (Airavat, V Kaveri, Tumakuru) that must never be
+attributed to @keralasrtc.</p>
+<p><strong>Change.</strong> Added a fifth search pattern — a plain
+<code>from:{handle}</code> reply sweep mandated every week for every
+agency, not only on zero weeks. Added two exclude rules: posts by the
+audit's own @UngalSoththu account, and news summaries/reposts with no
+first-hand passenger account in the thread. Added search notes on
+Karnataka-vs-Kerala KSRTC disambiguation and on @srdmekur1 as a
+candidate official-adjacent handle to verify (not added as a watch
+handle without profile evidence). No handle or category changes.</p>
+<p><strong>Eval.</strong> All 13 labeled complaint cases still classify
+with the same agency and category under v1.3 (changes are additive
+exclusions/patterns only). All 3 known-miss drills still reproduce: the
+obsolete <code>@KSRTC_Kerala</code> handle returns zero, the MTC
+legacy-tag thread remains recoverable via handle_history, and praise +
+feature-request posts remain excluded.</p>
+<p><strong>Evidence.</strong> <a href="https://x.com/DrmChennai">DRM
+reply sweep</a> · <a
+href="https://x.com/DrmChennai/status/2118353572555624460">one of five
+reply-verified SR threads</a> · <a
+href="https://x.com/Raghuvp99/status/2117859528406630498">CMRL blackout
+news-only coverage</a> · <a
+href="https://x.com/UngalSoththu/status/2117824232637772119">own-account
+thread sample</a> · <a
+href="https://x.com/akkitrends/status/2118026830167077191">Karnataka
+KSRTC noise sample</a> · <a
+href="https://x.com/srdmekur1/status/2117771360013521216">@srdmekur1
+candidate reply</a>.</p>
 
 
 <footer class="site">
