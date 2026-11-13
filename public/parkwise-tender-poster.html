@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Invitation-Only Tender — CUMTA × Moving Tech | UngalSoththu</title>
+<meta name="description" content="CUMTA/0072/2026-Edge AI: a restricted tender for Chennai's Edge AI parking & violation enforcement software. Value not published. Invitees not published. One vendor has been wearing CUMTA's badge for a year. உங்கள் சொத்து.">
+<style>
+  :root{
+    --navy:#0e1a2b; --navy2:#13223a; --card:#182c47; --line:#2a4062;
+    --amber:#d8a657; --amber-dim:#b98c3f; --red:#e05252; --teal:#5fb3a1;
+    --ink:#e9e4d8; --muted:#9aa7bd; --paper:#f4efe3;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  body{
+    background:var(--navy); color:var(--ink);
+    font-family:"Noto Sans Tamil","Noto Sans","Segoe UI",system-ui,-apple-system,sans-serif;
+    line-height:1.5; -webkit-font-smoothing:antialiased;
+  }
+  .poster{max-width:860px;margin:0 auto;padding:48px 40px 40px;border-left:1px solid var(--line);border-right:1px solid var(--line)}
+  @media print{body{background:#fff}.poster{max-width:none;color:#111} :root{--ink:#111;--muted:#444;--card:#fff;--line:#bbb;--navy:#fff;--navy2:#fff} .section{background:#fff!important;border-color:#bbb} .stat{background:#f6f1e6!important;color:#111} .fact b{color:#111}}
+
+  /* masthead */
+  .kicker{font-size:13px;letter-spacing:.28em;text-transform:uppercase;color:var(--amber);font-weight:700}
+  .mast{border-bottom:3px solid var(--amber);padding-bottom:20px;margin-bottom:26px}
+  h1{font-size:clamp(34px,6vw,58px);line-height:1.05;font-weight:900;letter-spacing:-.01em;margin:14px 0 6px}
+  h1 .ta{display:block;font-size:clamp(20px,3.4vw,30px);font-weight:700;color:var(--amber);margin-top:10px}
+  .deck{color:var(--muted);font-size:16px;max-width:640px;margin-top:12px}
+  .deck b{color:var(--ink)}
+
+  /* tender fact strip */
+  .strip{display:grid;grid-template-columns:repeat(6,1fr);gap:10px;margin:26px 0 8px}
+  @media(max-width:720px){.strip{grid-template-columns:repeat(3,1fr)}}
+  .stat{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:12px 12px 10px;text-align:center}
+  .stat .v{font-size:22px;font-weight:800;color:var(--amber)}
+  .stat .v.warn{color:var(--red)}
+  .stat .k{font-size:10.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin-top:3px}
+  .strip-note{font-size:12px;color:var(--muted);margin-bottom:6px}
+
+  .section{background:var(--navy2);border:1px solid var(--line);border-radius:14px;padding:22px 24px;margin:18px 0}
+  .section h2{font-size:15px;letter-spacing:.18em;text-transform:uppercase;color:var(--amber);margin-bottom:14px}
+  .section h2 .n{display:inline-block;background:var(--amber);color:var(--navy);border-radius:6px;padding:1px 8px;margin-right:8px;font-weight:800}
+
+  /* timeline */
+  .tl{list-style:none;position:relative;padding-left:26px}
+  .tl::before{content:"";position:absolute;left:7px;top:6px;bottom:6px;width:2px;background:var(--line)}
+  .tl li{position:relative;padding:7px 0 7px 8px}
+  .tl li::before{content:"";position:absolute;left:-25px;top:14px;width:12px;height:12px;border-radius:50%;background:var(--navy);border:3px solid var(--amber)}
+  .tl li.hot::before{border-color:var(--red)}
+  .tl .d{font-weight:800;color:var(--amber);font-size:14px;letter-spacing:.04em}
+  .tl li.hot .d{color:var(--red)}
+  .tl p{font-size:14.5px}
+  .tl .src{color:var(--muted);font-size:12px}
+
+  /* crafted table */
+  table{width:100%;border-collapse:collapse;font-size:13.5px}
+  th{ text-align:left;font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);padding:6px 8px;border-bottom:2px solid var(--line)}
+  td{padding:8px;border-bottom:1px solid var(--line);vertical-align:top}
+  td.sig{font-weight:700}
+  .tag{display:inline-block;font-size:10.5px;font-weight:800;letter-spacing:.06em;border-radius:5px;padding:2px 7px;white-space:nowrap}
+  .tag.c{background:#1d3b2f;color:#7fd6b4;border:1px solid #2e5c49}
+  .tag.i{background:#3b2f1d;color:#e3b96a;border:1px solid #5c4a2e}
+  .tag.u{background:#2f1d1d;color:#e08a8a;border:1px solid #5c2e2e}
+
+  /* the question */
+  .q{font-size:clamp(20px,3vw,27px);font-weight:900;line-height:1.3}
+  .q .amber{color:var(--amber)} .q .red{color:var(--red)}
+  .q-sub{color:var(--muted);font-size:14px;margin-top:10px}
+
+  /* demands */
+  .demands{counter-reset:dem;list-style:none}
+  .demands li{counter-increment:dem;position:relative;padding:9px 0 9px 44px;border-bottom:1px dashed var(--line);font-size:15px}
+  .demands li:last-child{border-bottom:none}
+  .demands li::before{content:counter(dem);position:absolute;left:0;top:8px;width:28px;height:28px;border-radius:8px;background:var(--amber);color:var(--navy);font-weight:900;display:flex;align-items:center;justify-content:center;font-size:15px}
+
+  .fine{font-size:12px;color:var(--muted);line-height:1.55}
+  .fine b{color:var(--ink)}
+  .foot{margin-top:26px;border-top:2px solid var(--amber);padding-top:16px;display:flex;justify-content:space-between;gap:18px;flex-wrap:wrap;align-items:flex-end}
+  .brand{font-weight:900;font-size:18px}
+  .brand .ta{color:var(--amber)}
+  .brand small{display:block;font-weight:400;color:var(--muted);font-size:11.5px;margin-top:3px}
+  code{background:#0b1523;border:1px solid var(--line);border-radius:5px;padding:1px 6px;font-size:12.5px}
+  a{color:var(--teal);text-decoration:none}
+</style>
+</head>
+<body>
+<div class="poster">
+
+  <!-- MASTHEAD -->
+  <div class="mast">
+    <div class="kicker">[CUMTA] Procurement Watch · Tender 2026_CUMTA_725674_1 · closes 27-Nov-2026</div>
+    <h1>THE INVITATION-ONLY TENDER
+      <span class="ta">சொத்து உங்களுடையது — அழைப்பு யாருக்கு?</span>
+    </h1>
+    <p class="deck">Chennai Unified Metropolitan Transport Authority is buying the software brain for citywide <b>“Edge AI Smart Parking and Violation Enforcement.”</b> Only <b>invited firms</b> may bid. The tender does not publish its value, its invitee list, or its reason for shutting the door — while one vendor has already spent a year running a parking pilot <b>wearing CUMTA’s own logo.</b></p>
+  </div>
+
+  <!-- FACT STRIP -->
+  <div class="strip">
+    <div class="stat"><div class="v warn">NA</div><div class="k">Tender value</div></div>
+    <div class="stat"><div class="v warn">₹0</div><div class="k">EMD deposit</div></div>
+    <div class="stat"><div class="v warn">Invited</div><div class="k">Bidders only</div></div>
+    <div class="stat"><div class="v">15 days</div><div class="k">Bid window</div></div>
+    <div class="stat"><div class="v warn">None</div><div class="k">Pre-bid meeting</div></div>
+    <div class="stat"><div class="v warn">None</div><div class="k">Clarification window</div></div>
+  </div>
+  <p class="strip-note">Official record, tntenders.gov.in, verified 13-Nov-2026. Tender CUMTA/0072/2026-Edge AI · bid validity 45 days (Rules 2000 say ordinarily 90) · inviting officer: Member Secretary, CUMTA, MetroS, Anna Salai.</p>
+
+  <!-- SECTION 1: TIMELINE -->
+  <div class="section">
+    <h2><span class="n">1</span>One vendor, one year, zero paper</h2>
+    <ul class="tl">
+      <li><span class="d">JUL 2024</span><p>Moving Tech Innovations (Bengaluru, Juspay group) wins CUMTA’s ticketing tender <code>CUMTA/9112/TICKETING/2024</code> → runs the <b>Chennai One</b> app. Evaluation records and contract terms remain unpublished. <span class="src">— tender record; TNIE, Jul 2024</span></p></li>
+      <li><span class="d">20 SEP 2025</span><p>Chennai One launches. TN pays CUMTA a ~<b>₹3 crore/yr</b> platform fee (1.39% of tickets) to the vendor. <span class="src">— TNIE, 16 Sep 2025</span></p></li>
+      <li><span class="d">14 NOV 2025</span><p>CUMTA’s official logo is uploaded to <code>cumta.org</code> — and begins serving as the branding of a <b>private parking platform</b>. <span class="src">— asset headers, cumta.org</span></p></li>
+      <li><span class="d">26–28 MAR 2026</span><p>Moving Tech acquires <b>Automicle</b> (Netherlands) — “public mobility and <b>digital parking</b> solutions” for city governments; founders pledge to bring it “to Indian cities as well.” <span class="src">— The Hindu, 28 Mar 2026</span></p></li>
+      <li><span class="d">SEP 2026</span><p><code>chennai.parkwise.moving.tech</code> runs a live “<b>pilot</b>” with <code>crowdEnforcementEnabled: true</code> and enforcement logins (Traffic Police, Parking Marshal). ParkWise markets itself to cities as adoptable <b>“without tenders.”</b> We write to CUMTA asking for the authorising paper. <b>No reply.</b> <span class="src">— api.parkwise.city config; parkwise.city; letter dt. 09-Sep-2026</span></p></li>
+      <li class="hot"><span class="d">12 NOV 2026</span><p>CUMTA floats <b>CUMTA/0072/2026-Edge AI</b> — “Selection of System Integrator for Edge AI Smart Parking and <b>Violation Enforcement</b> System Software.” Open <i>Limited</i>: invited bidders only. The technical spec file is literally named <code>VideoAnalytics.pdf</code>.</p></li>
+      <li class="hot"><span class="d">27 NOV 2026</span><p>Bids close, 3:00 PM. Opening at 4:00 PM. The public still cannot name a single invited firm.</p></li>
+    </ul>
+  </div>
+
+  <!-- SECTION 2: THE QUESTION -->
+  <div class="section">
+    <h2><span class="n">2</span>The question</h2>
+    <p class="q">Is this tender written so that <span class="red">only one firm can win</span> — the same firm that has been operating a CUMTA-branded parking pilot <span class="amber">without any published contract?</span></p>
+    <p class="q-sub">We can’t answer that yet — because CUMTA has not published what would answer it. Here is exactly what the public record shows, and what it hides.</p>
+    <table>
+      <tr><th style="width:62%">Signal on the record</th><th>Status</th></tr>
+      <tr><td class="sig">Restricted “Open Limited” method — with no reason published anywhere</td><td><span class="tag c">CONFIRMED</span></td></tr>
+      <tr><td class="sig">Tender value shown as “NA” — so the 30-day window required above ₹10 crore <b>cannot even be checked</b> (15 days = legal floor only up to ₹10 crore)</td><td><span class="tag c">CONFIRMED</span></td></tr>
+      <tr><td class="sig">No pre-bid meeting, no clarification dates — competitors get no room to query the spec</td><td><span class="tag c">CONFIRMED</span></td></tr>
+      <tr><td class="sig">Scope words “Violation Enforcement” + spec file named VideoAnalytics match ParkWise’s marketed enforcement stack (ANPR challans, Parivahan integration)</td><td><span class="tag i">INFERENCE</span></td></tr>
+      <tr><td class="sig">One vendor holds ~12 months of de-facto operational access under CUMTA branding — a head start no open process would create</td><td><span class="tag i">INFERENCE</span></td></tr>
+      <tr><td class="sig">Invitee list · RfP authorship · eligibility criteria inside the spec — the three documents that would settle the question</td><td><span class="tag u">WITHHELD</span></td></tr>
+    </table>
+    <p class="fine" style="margin-top:14px"><b>Read this carefully:</b> none of this proves rigging, and we allege none. A restricted tender is lawful <i>when reasoned</i>. What is proven is that this procurement cannot be audited from outside — value hidden, invitees hidden, reason hidden, spec unarchived. That is not a paperwork detail. That is the difference between a market and a hand-back.</p>
+  </div>
+
+  <!-- SECTION 3: DEMANDS -->
+  <div class="section">
+    <h2><span class="n">3</span>Five papers that end the question</h2>
+    <ol class="demands">
+      <li><b>The estimate.</b> Publish the tender value/estimate. It decides whether the 15-day window is legal at all.</li>
+      <li><b>The invitee list + reason.</b> Who was invited to bid on a public enforcement system, and under what recorded justification.</li>
+      <li><b>The ParkWise papers.</b> Every contract, MoU, pilot authorisation or work order with Moving Tech, Automicle or ParkWise — and who authorised the CUMTA logo upload to cumta.org.</li>
+      <li><b>The spec’s authorship.</b> Who wrote <code>VideoAnalytics.pdf</code> — in-house, a consultant, or a vendor draft.</li>
+      <li><b>The award, in the open.</b> TN Tenders Act §10(7) already obliges CUMTA to send the winner’s name and rejection reasons to the Tender Bulletin. We will be reading it.</li>
+    </ol>
+  </div>
+
+  <!-- FOOTER -->
+  <div class="foot">
+    <div class="brand">UngalSoththu <span class="ta">உங்கள் சொத்து</span><small>Public transport is a public asset. Transit data belongs to the public. · ungalthsoththu.github.io</small></div>
+    <div class="fine" style="max-width:420px">
+      Compiled <b>13-Nov-2026</b>. Sources: tntenders.gov.in tender record · tenders.reclaimchennai.city mirror + Rules 2000 checks · api.parkwise.city city config · cumta.org asset headers · TNIE 16-Sep-2025 · The Hindu 28-Mar-2026 · CUMTA pre-tender consultation, Smart Parking Management System, Nov 2024 (“CUMTA will provide the universal software”). Evidence archived at ungalsoththu/osint/cumta-2026-11-13. Facts labelled confirmed / inference; nothing here alleges illegality by any person.
+    </div>
+  </div>
+
+</div>
+</body>
+</html>
